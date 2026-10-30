@@ -1,7 +1,7 @@
-# Explicação completa do projeto (para você defender na entrevista)
+# Explicação completa do projeto (de como ele se relaciona totalmente com a vaga)
 
-Este documento existe para que você consiga explicar **cada linha relevante**, **por que ela está
-ali** e **o que você sacrificou ao escolhê-la**. Leia na ordem da primeira vez; depois use o
+Este documento existe para explicar **cada linha relevante**, **por que ela está
+ali** e **o que sacrificou ao escolhê-la**.
 índice como consulta.
 
 1. [A história em 60 segundos](#1-a-história-em-60-segundos)
