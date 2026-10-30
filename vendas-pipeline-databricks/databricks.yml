@@ -1,0 +1,36 @@
+# Declarative Automation Bundle (antigo "Databricks Asset Bundle"): infraestrutura do Job como código.
+# Validar:  databricks bundle validate -t dev
+# Deploy:   databricks bundle deploy -t dev
+# Rodar:    databricks bundle run pipeline_vendas -t dev
+bundle:
+  name: vendas-pipeline-databricks
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    description: Catálogo do Unity Catalog onde as tabelas são criadas
+    default: workspace
+  schema:
+    description: Schema das tabelas do pipeline
+    default: vendas_dev
+  alert_email:
+    description: Quem recebe o e-mail de falha do Job
+    default: seu-email@exemplo.com
+
+targets:
+  dev:
+    # mode: development prefixa os recursos com o seu usuário e PAUSA os agendamentos,
+    # então rodar em dev nunca conflita com prod nem dispara cron sem querer.
+    mode: development
+    default: true
+    variables:
+      schema: vendas_dev
+  prod:
+    mode: production
+    variables:
+      schema: vendas_prod
+    workspace:
+      root_path: /Shared/.bundle/${bundle.name}/${bundle.target}
+    # Em produção o deploy é feito por uma service principal (CI), nunca por uma pessoa.

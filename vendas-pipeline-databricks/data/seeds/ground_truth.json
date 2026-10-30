@@ -1,0 +1,85 @@
+{
+  "gerado_em": "2026-10-23T21:33:31",
+  "seed": 7,
+  "n_vendas_geradas": 3000,
+  "linhas_brutas": {
+    "erp": 1723,
+    "api": 771,
+    "db": 600
+  },
+  "vendas_validas_unicas": 2812,
+  "valor_total_valido": 2853868.61,
+  "quarentena_esperada": {
+    "cliente_sem_de_para": 68,
+    "valor_invalido": 53,
+    "id_venda_nulo": 8,
+    "valor_negativo": 20,
+    "data_futura": 8,
+    "linha_corrompida": 8,
+    "data_invalida": 23
+  },
+  "revisoes_erp": 73,
+  "duplicatas_exatas_api": 21,
+  "remapeamentos": [
+    {
+      "id_origem": "C0001",
+      "antes": "CAN-0001",
+      "depois": "CAN-0501",
+      "corte": "2026-09-08"
+    },
+    {
+      "id_origem": "C0002",
+      "antes": "CAN-0002",
+      "depois": "CAN-0502",
+      "corte": "2026-09-08"
+    },
+    {
+      "id_origem": "C0003",
+      "antes": "CAN-0003",
+      "depois": "CAN-0503",
+      "corte": "2026-09-08"
+    },
+    {
+      "id_origem": "C0004",
+      "antes": "CAN-0004",
+      "depois": "CAN-0504",
+      "corte": "2026-09-08"
+    },
+    {
+      "id_origem": "C0005",
+      "antes": "CAN-0005",
+      "depois": "CAN-0505",
+      "corte": "2026-09-08"
+    },
+    {
+      "id_origem": "C0006",
+      "antes": "CAN-0006",
+      "depois": "CAN-0506",
+      "corte": "2026-09-08"
+    },
+    {
+      "id_origem": "C0007",
+      "antes": "CAN-0007",
+      "depois": "CAN-0507",
+      "corte": "2026-09-08"
+    },
+    {
+      "id_origem": "C0008",
+      "antes": "CAN-0008",
+      "depois": "CAN-0508",
+      "corte": "2026-09-08"
+    },
+    {
+      "id_origem": "C0009",
+      "antes": "CAN-0009",
+      "depois": "CAN-0509",
+      "corte": "2026-09-08"
+    },
+    {
+      "id_origem": "C0010",
+      "antes": "CAN-0010",
+      "depois": "CAN-0510",
+      "corte": "2026-09-08"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  qualidade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Instalar dependências
+        run: pip install -e ".[local,dev]"
+      - name: Lint
+        run: ruff check src tests tools legacy
+      # Primeiro os testes sem Delta (rápidos), depois o conjunto completo, que baixa os jars
+      # do Delta e roda o MERGE de verdade (as variantes `delta` dos testes de integração).
+      - name: Testes de lógica (sem Delta)
+        run: VENDAS_SEM_DELTA=1 pytest -q --cov=src/vendas_pipeline --cov-report=term-missing
+      - name: Testes completos (com Delta)
+        run: pytest -q tests/integration
+
+  validar-bundle:
+    runs-on: ubuntu-latest
+    # Só roda se o repositório tiver a variável DATABRICKS_HOST (Settings > Variables).
+    if: ${{ vars.DATABRICKS_HOST != '' }}
+    needs: qualidade
+    steps:
+      - uses: actions/checkout@v4
+      - uses: databricks/setup-cli@main
+      - name: Validar bundle
+        env:
+          DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: databricks bundle validate -t dev
